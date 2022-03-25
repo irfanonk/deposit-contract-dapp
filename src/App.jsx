@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import Loan from "./components/Loan";
 import Lend from "./components/Lend";
 import Navbar from "./components/Navbar";
-import Error from "./components/Error";
+import Error from "./Pages/Error";
 import Redemption from "./components/Redemption";
 import { Routes, Route } from "react-router-dom";
 import { web3Context } from "./context/web3Context";

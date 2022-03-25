@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { web3Context } from "../context/web3Context";
 import { shortenAddress } from "../utils/shortenAddress";
 import { ethers } from "ethers";
+import { metamaskSvg } from "../assets/svgs";
 
 let commonCss =
   "font-bold px-2 md:px-4 py-1  cursor-pointer rounded-2xl hover:text-white transition duration-200 flex ";
@@ -115,8 +116,9 @@ export default function Navbar() {
         {!account ? (
           <div
             onClick={() => requestAccount()}
-            className="bg-[#153d6f70] text-center w-[130px] text-sm md:text-base md:w-auto px-2 md:px-4 py-2 rounded-2xl cursor-pointer outline outline-[1px] outline-[#191b1f] text-[#5090ea] hover:text-[#5da0ff] border-[1px] border-transparent hover:border-[#3d8be970] transition duration-200"
+            className="bg-[#153d6f70] flex items-center text-center w-[130px] text-sm md:text-base md:w-auto px-2 md:px-4 py-2 rounded-2xl cursor-pointer outline outline-[1px] outline-[#191b1f] text-[#5090ea] hover:text-[#5da0ff] border-[1px] border-transparent hover:border-[#3d8be970] transition duration-200"
           >
+            <div className="mr-2">{metamaskSvg}</div>
             Connect Wallet
           </div>
         ) : (
