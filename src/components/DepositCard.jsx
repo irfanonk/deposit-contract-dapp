@@ -1,27 +1,70 @@
-import React from "react";
+import React, { useContext } from "react";
+import { web3Context } from "../context/web3Context";
 
-export default function DepositCard() {
+export default function DepositCard({ isProceeding }) {
+  const { account, requestAccount, getLoanContract, provider } =
+    useContext(web3Context);
   return (
-    <div class="max-w-sm rounded overflow-hidden shadow-lg">
-      <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-        <p class="text-gray-700 text-base">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-          nihil.
-        </p>
-      </div>
-      <div class="px-6 pt-4 pb-2">
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-          #photography
-        </span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-          #travel
-        </span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-          #winter
-        </span>
-      </div>
+    <div className="p-4 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <form className="space-y-6" action="#">
+        <h5 className="text-xl font-medium text-gray-900 dark:text-white">
+          Package 1
+        </h5>
+        <div>
+          <label
+            htmlFor="password"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          >
+            Amount
+          </label>
+          <input
+            type="text"
+            name="amount"
+            id="amount"
+            placeholder="0"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+            required
+          />
+        </div>
+        <div className="flex items-start">
+          <div className="flex items-start">
+            <div className="flex items-center h-5">
+              <input
+                id="remember"
+                aria-describedby="remember"
+                type="checkbox"
+                className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                required
+              />
+            </div>
+            <div className="ml-3 text-sm">
+              <label
+                htmlFor="remember"
+                className="font-medium text-gray-900 dark:text-gray-300"
+              >
+                Check
+              </label>
+            </div>
+          </div>
+        </div>
+        {!account ? (
+          <div
+            onClick={() => requestAccount()}
+            classNameName="mt-3 bg-[#153d6f70] px-2 py-2 md:py-3 rounded-2xl text-center text-[#5090ea] cursor-pointer hover:bg-[#1f5ba370] transition text-xl"
+          >
+            Connect Wallet
+          </div>
+        ) : !isProceeding ? (
+          <button
+            type="submit"
+            className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Deposit
+          </button>
+        ) : (
+          <div classNameName="my-10 w-20 h-20 animate-spin rounded-full border-blue-700 border-b-2 mx-auto"></div>
+        )}
+      </form>
     </div>
   );
 }

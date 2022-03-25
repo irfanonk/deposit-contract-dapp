@@ -93,7 +93,7 @@ export default function Navbar() {
       <div className="w-[fit-content] font-courgette text-3xl cursor-pointer hover:scale-125 transition duration-200">
         Deposit App
       </div>
-      {/* <div className="fixed bottom-5 left-[50%] translate-x-[-50%] md:static md:translate-x-[%] p-[3px] bg-[#191b1f] flex rounded-full md:w-[fit-content] place-self-center">
+      {/* <div className="fixed bottom-5 left-[50%] translate-x-[-50%] md:static md:translate-x-[%] p-[3px] bg-gray-800  flex rounded-full md:w-[fit-content] place-self-center">
         {navMenu.map((item, index) => (
           <a
             key={item + index}
@@ -106,7 +106,7 @@ export default function Navbar() {
       <div className="flex justify-self-end  md:justify-self-end  items-center justify-center">
         <a
           href="https://polygonscan.com"
-          className="min-w-[120px]  flex  items-center mr-2 px-4 py-2 rounded-2xl bg-[#191b1f] cursor-pointer"
+          className="min-w-[120px]  flex  items-center mr-2 px-4 py-2 rounded-2xl bg-gray-800  cursor-pointer"
           target="_blank"
           rel="noopenner noreferrer"
         >
@@ -122,7 +122,7 @@ export default function Navbar() {
             Connect Wallet
           </div>
         ) : (
-          <div className="bg-[#191b1f] flex items-center rounded-2xl p-[1px]">
+          <div className="bg-gray-800  flex items-center rounded-2xl p-[1px]">
             <div
               title={
                 userBalance + " " + (isShowingToken ? "CustomToken" : "ETH")
@@ -152,7 +152,7 @@ export default function Navbar() {
             isDropDown ? setIsDropDown(false) : setIsDropDown(true);
           }}
         >
-          <div className="flex items-center h-10 px-3 bg-[#191b1f] rounded-xl cursor-pointer ml-2 border-[1px] border-transparent transition duration-200 hover:border-gray-600">
+          <div className="flex items-center h-10 px-3 bg-gray-800  rounded-xl cursor-pointer ml-2 border-[1px] border-transparent transition duration-200 hover:border-gray-600">
             <BsThreeDots className="text-2xl" />
           </div>
           {isDropDown ? (
