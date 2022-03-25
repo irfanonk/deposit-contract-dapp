@@ -14,7 +14,19 @@ function App() {
 
   return (
     <div className="App min-h-screen text-white">
-      {isSupportMetaMask ? (
+      <div>
+        <div>
+          <Navbar />
+        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/loan" element={<Loan />} />
+          <Route path="/lend" element={<Lend />} />
+          <Route path="/redemption" element={<Redemption />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </div>
+      {/* {isSupportMetaMask ? (
         networkId != undefined ? (
           networkId == 137 || networkId == 80001 || networkId == 4 ? (
             <div>
@@ -50,7 +62,7 @@ function App() {
             You should consider trying MetaMask!
           </div>
         </div>
-      )}
+      )} */}
       <div className="bg-shine bg-main fixed top-0 left-0 right-0 bottom-0 z-[-1] pointer-events-none w-[200vw] w-[200vh]"></div>
       {/* <div className="hidden md:flex  justify-center items-center fixed right-3 bottom-3 text-gray-300">
         <div className="h-[10px] w-[10px] rounded-full mr-1 bg-green-500"></div>
