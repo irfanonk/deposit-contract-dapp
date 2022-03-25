@@ -5,11 +5,12 @@ import Navbar from "./components/Navbar";
 import Error from "./components/Error";
 import Redemption from "./components/Redemption";
 import { Routes, Route } from "react-router-dom";
-import { LendAndLoanContext } from "./context/LendAndLoanContext";
+import { web3Context } from "./context/web3Context";
+import Home from "./Pages/Home";
 
 function App() {
   const { networkId, contractLiquidity, isSupportMetaMask } =
-    useContext(LendAndLoanContext);
+    useContext(web3Context);
 
   return (
     <div className="App min-h-screen text-white">
@@ -21,7 +22,8 @@ function App() {
                 <Navbar />
               </div>
               <Routes>
-                <Route path="/" element={<Loan />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/loan" element={<Loan />} />
                 <Route path="/lend" element={<Lend />} />
                 <Route path="/redemption" element={<Redemption />} />
                 <Route path="*" element={<Error />} />

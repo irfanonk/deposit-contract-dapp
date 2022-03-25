@@ -3,7 +3,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { FiTrendingUp } from "react-icons/fi";
 import { FaFaucet } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { LendAndLoanContext } from "../context/LendAndLoanContext";
+import { web3Context } from "../context/web3Context";
 import { shortenAddress } from "../utils/shortenAddress";
 import { ethers } from "ethers";
 
@@ -39,7 +39,7 @@ const NavItem = ({ active, content, handleOnClick }) => {
 
 export default function Navbar() {
   const { requestAccount, account, provider, getTokenContract } =
-    useContext(LendAndLoanContext);
+    useContext(web3Context);
   const [isActive, setIsActive] = useState("Loan");
   const [isDropDown, setIsDropDown] = useState(false);
   const [isShowingToken, setIsShowingToken] = useState(false);

@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import React, { useContext, useRef, useState } from "react";
-import { LendAndLoanContext } from "../context/LendAndLoanContext";
+import { web3Context } from "../context/web3Context";
 import { AiFillWarning } from "react-icons/ai";
 import { ToastContainer, toast } from "react-toastify";
 import LoanConfirm from "./LoanConfirm";
@@ -27,7 +27,7 @@ const DaySelection = ({ content, isActive, handleOnClick }) => {
 
 export default function Loan() {
   const { account, requestAccount, getLoanContract, provider } =
-    useContext(LendAndLoanContext);
+    useContext(web3Context);
   const [isActive, setIsActive] = useState(7);
   const [isFetchingAmont, setIsFetchingAmount] = useState(false);
   const [isValidLoanAmount, setIsValidLoanAmount] = useState(true);

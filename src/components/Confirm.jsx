@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import React, { useContext, useState } from "react";
 import { MdOutlineNavigateNext, MdNavigateBefore } from "react-icons/md";
-import { LendAndLoanContext } from "../context/LendAndLoanContext";
+import { web3Context } from "../context/web3Context";
 
 export default function Confirm({
   information,
@@ -11,7 +11,7 @@ export default function Confirm({
   setHash,
 }) {
   const { getLoanContract, provider, account, setContractTotalLiquidity } =
-    useContext(LendAndLoanContext);
+    useContext(web3Context);
   const [isConfirming, setIsConfirming] = useState(false);
 
   const handleConfirm = async () => {

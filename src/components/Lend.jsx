@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 import { HiArrowSmDown } from "react-icons/hi";
 import { FaEthereum } from "react-icons/fa";
 import { BsCoin } from "react-icons/bs";
-import { LendAndLoanContext } from "../context/LendAndLoanContext";
+import { web3Context } from "../context/web3Context";
 import { AiFillWarning } from "react-icons/ai";
 import { ethers } from "ethers";
 import { IoIosCloseCircleOutline } from "react-icons/io";
@@ -18,7 +18,7 @@ const LendDetail = ({
   lendRef,
 }) => {
   const { getTokenContract, provider, account, getLoanContract } =
-    useContext(LendAndLoanContext);
+    useContext(web3Context);
   const [isApproving, setIsApproving] = useState(false);
   const [tokenBalance, setTokenBalance] = useState();
   const [goingToConfirm, setGoingToConfirm] = useState(false);
@@ -223,7 +223,7 @@ export default function Lend() {
     provider,
     getAccBalance,
     setContractTotalLiquidity,
-  } = useContext(LendAndLoanContext);
+  } = useContext(web3Context);
   const [isDropDown, setIsDropDown] = useState(false);
   const [isLendEther, setIsLendEther] = useState(true);
   const [isProceeding, setIsProceeding] = useState(false);

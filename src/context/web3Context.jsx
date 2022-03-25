@@ -7,7 +7,7 @@ import {
   tokenContractAddress,
 } from "../utils/constants";
 
-export const LendAndLoanContext = createContext();
+export const web3Context = createContext();
 
 export const LendAndLoanProvider = ({ children }) => {
   const [account, setAccount] = useState();
@@ -126,7 +126,7 @@ export const LendAndLoanProvider = ({ children }) => {
     await getUserOngoingLend();
   }, [account]);
   return (
-    <LendAndLoanContext.Provider
+    <web3Context.Provider
       value={{
         requestAccount,
         account,
@@ -143,6 +143,6 @@ export const LendAndLoanProvider = ({ children }) => {
       }}
     >
       {children}
-    </LendAndLoanContext.Provider>
+    </web3Context.Provider>
   );
 };

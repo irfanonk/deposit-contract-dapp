@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { LendAndLoanContext } from "../context/LendAndLoanContext";
+import { web3Context } from "../context/web3Context";
 import { ethers } from "ethers";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import lending from "../images/lending.png";
@@ -68,7 +68,7 @@ const LendList = ({
     account,
     getUserOngoingLend,
     setContractTotalLiquidity,
-  } = useContext(LendAndLoanContext);
+  } = useContext(web3Context);
   const [lendDate, setLendDate] = useState();
   const [lendDateGetInterest, setLendDateGetInterest] = useState();
 
@@ -177,7 +177,7 @@ const LoanList = ({
     account,
     getUserOngoingLoan,
     setContractTotalLiquidity,
-  } = useContext(LendAndLoanContext);
+  } = useContext(web3Context);
   const [loanDueDate, setLoanDueDate] = useState();
   const [loanDuration, setLoanDuration] = useState();
 
@@ -256,7 +256,7 @@ const LoanList = ({
 
 export default function Redemption() {
   const { getUserOngoingLend, getUserOngoingLoan, account, requestAccount } =
-    useContext(LendAndLoanContext);
+    useContext(web3Context);
   const [lends, setLends] = useState();
   const [loans, setLoans] = useState();
   const [loading, setLoading] = useState(true);

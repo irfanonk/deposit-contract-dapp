@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MdNavigateBefore } from "react-icons/md";
 import { tokenContractAddress } from "../utils/constants";
-import { LendAndLoanContext } from "../context/LendAndLoanContext";
+import { web3Context } from "../context/web3Context";
 import { AiFillWarning } from "react-icons/ai";
 import { loanContractAddress } from "../utils/constants";
 import Fetching from "./Fetching";
@@ -15,8 +15,7 @@ export default function Approve({
   setIsApproved,
   isApproved,
 }) {
-  const { getTokenContract, provider, account } =
-    useContext(LendAndLoanContext);
+  const { getTokenContract, provider, account } = useContext(web3Context);
   const [balance, setBalance] = useState(null);
   const [isApproving, setIsApproving] = useState(false);
 
