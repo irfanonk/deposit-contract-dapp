@@ -52,13 +52,13 @@ function App() {
         </div>
       )}
       <div className="bg-shine bg-main fixed top-0 left-0 right-0 bottom-0 z-[-1] pointer-events-none w-[200vw] w-[200vh]"></div>
-      <div className="hidden md:flex  justify-center items-center fixed right-3 bottom-3 text-gray-300">
+      {/* <div className="hidden md:flex  justify-center items-center fixed right-3 bottom-3 text-gray-300">
         <div className="h-[10px] w-[10px] rounded-full mr-1 bg-green-500"></div>
         <div>
           Contract total liquidity:{" "}
           {contractLiquidity ? contractLiquidity + " ETH" : "Fetching.."}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
