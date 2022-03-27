@@ -11,36 +11,17 @@ import { metamaskSvg } from "../assets/svgs";
 let commonCss =
   "font-bold px-2 md:px-4 py-1  cursor-pointer rounded-2xl hover:text-white transition duration-200 flex ";
 
-const NavItem = ({ active, content, handleOnClick }) => {
-  return content == "Contract" ? (
-    <a
-      className={commonCss + "text-gray-300"}
-      href="https://polygonscan.com//address/0xaaE54151De7137E080538d84b7b8ab02F58A9768"
-      target="_blank"
-      rel="noopenner noreferrer"
-    >
-      {content} <FiTrendingUp className="ml-1 text-bold" />
-    </a>
-  ) : (
-    <Link to={"/" + (content == "Loan" ? "" : content)}>
-      <div
-        onClick={handleOnClick}
-        className={
-          commonCss +
-          (active == content
-            ? "bg-[#212429] text-white hover:text-gray-400"
-            : "text-gray-300")
-        }
-      >
-        {content}
-      </div>
-    </Link>
-  );
-};
-
 export default function Navbar() {
-  const { requestAccount, account, provider, getTokenContract } =
-    useContext(web3Context);
+  const {
+    requestAccount,
+    networkId,
+    account,
+    provider,
+    getAccBalance,
+    getTokenContract,
+    getContractBalance,
+  } = useContext(web3Context);
+
   const [isActive, setIsActive] = useState("Loan");
   const [isDropDown, setIsDropDown] = useState(false);
   const [isShowingToken, setIsShowingToken] = useState(false);
@@ -59,14 +40,11 @@ export default function Navbar() {
     let param = url.substring(url.lastIndexOf("/") + 1);
     param == "" ? setIsActive("Loan") : setIsActive(param);
     if (account) {
-      let balance = await provider.getBalance(account);
-      setUserBalance(
-        Number(ethers.utils.formatEther(balance.toString())).toFixed(2)
-      );
+      let balance = await getAccBalance();
+      console.log("balance", balance);
+      setUserBalance(balance);
     }
-    //balance = ethers.utils.formatEther(balance);
-
-    // document.addEventListener("click", handleClickOutside);
+    console.log("cont balance", await getContractBalance());
 
     return () => {
       // document.removeEventListener("click", handleClickOutside);
@@ -93,16 +71,6 @@ export default function Navbar() {
       <div className="w-[fit-content] font-courgette text-3xl cursor-pointer hover:scale-125 transition duration-200">
         Deposit App
       </div>
-      {/* <div className="fixed bottom-5 left-[50%] translate-x-[-50%] md:static md:translate-x-[%] p-[3px] bg-gray-800  flex rounded-full md:w-[fit-content] place-self-center">
-        {navMenu.map((item, index) => (
-          <a
-            key={item + index}
-            active={isActive}
-            content={item}
-            handleOnClick={() => setIsActive(item)}
-          />
-        ))}
-      </div> */}
       <div className="flex justify-self-end  md:justify-self-end  items-center justify-center">
         <a
           href="https://polygonscan.com"
@@ -113,7 +81,17 @@ export default function Navbar() {
           <div className="w-[9px] h-[9px] bg-purple-500 mr-2 rounded-full"></div>
           Polygon
         </a>
-        {!account ? (
+        {!networkId ? (
+          <a
+            href="https://metamask.io"
+            target="_blank"
+            rel="noopenner noreferrer"
+            className="bg-[#153d6f70] flex items-center text-center w-[130px] text-sm md:text-base md:w-auto px-2 md:px-4 py-2 rounded-2xl cursor-pointer outline outline-[1px] outline-[#191b1f] text-[#5090ea] hover:text-[#5da0ff] border-[1px] border-transparent hover:border-[#3d8be970] transition duration-200"
+          >
+            <div className="mr-2">{metamaskSvg}</div>
+            Install Metamask
+          </a>
+        ) : !account ? (
           <div
             onClick={() => requestAccount()}
             className="bg-[#153d6f70] flex items-center text-center w-[130px] text-sm md:text-base md:w-auto px-2 md:px-4 py-2 rounded-2xl cursor-pointer outline outline-[1px] outline-[#191b1f] text-[#5090ea] hover:text-[#5da0ff] border-[1px] border-transparent hover:border-[#3d8be970] transition duration-200"

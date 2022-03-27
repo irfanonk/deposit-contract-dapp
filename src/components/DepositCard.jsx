@@ -50,7 +50,7 @@ export default function DepositCard({ isProceeding }) {
         {!account ? (
           <div
             onClick={() => requestAccount()}
-            classNameName="mt-3 bg-[#153d6f70] px-2 py-2 md:py-3 rounded-2xl text-center text-[#5090ea] cursor-pointer hover:bg-[#1f5ba370] transition text-xl"
+            className="mt-3 bg-[#153d6f70] px-2 py-2 md:py-3 rounded-2xl text-center text-[#5090ea] cursor-pointer hover:bg-[#1f5ba370] transition text-xl"
           >
             Connect Wallet
           </div>
@@ -62,7 +62,7 @@ export default function DepositCard({ isProceeding }) {
             Deposit
           </button>
         ) : (
-          <div classNameName="my-10 w-20 h-20 animate-spin rounded-full border-blue-700 border-b-2 mx-auto"></div>
+          <div className="my-10 w-20 h-20 animate-spin rounded-full border-blue-700 border-b-2 mx-auto"></div>
         )}
       </form>
     </div>

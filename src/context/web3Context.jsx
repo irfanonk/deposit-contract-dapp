@@ -5,6 +5,8 @@ import {
   loanContractAddress,
   tokenAbi,
   tokenContractAddress,
+  ScorpMaticAbi,
+  ScorpMaticAddress,
 } from "../utils/constants";
 
 export const web3Context = createContext();
@@ -27,6 +29,66 @@ export const LendAndLoanProvider = ({ children }) => {
     });
     setAccount(accounts[0]);
   };
+  const getAccBalance = async () => {
+    if (provider) {
+      if (account) {
+        let balance = await provider.getBalance(account);
+        return Number(ethers.utils.formatEther(balance.toString())).toFixed(2);
+      }
+    }
+  };
+
+  // !!! old contract
+
+  const getContractBalance = async () => {
+    if (provider) {
+      let contract = new ethers.Contract(
+        ScorpMaticAddress,
+        ScorpMaticAbi,
+        provider
+      );
+      let contractBalance = await contract.getContractBalance();
+      return Number(
+        ethers.utils.formatEther(contractBalance.toString())
+      ).toFixed(2);
+    }
+  };
+
+  const loadWeb3 = async () => {
+    if (window.ethereum) {
+      provider = new ethers.providers.Web3Provider(window.ethereum);
+      setIsSupportMetaMask(true);
+    } else {
+      setIsSupportMetaMask(false);
+    }
+  };
+  const handleStartUp = async () => {
+    if (typeof window.ethereum != undefined) {
+      const acc = await provider.listAccounts();
+      if (acc) {
+        setAccount(acc[0]);
+      }
+      setContractTotalLiquidity();
+      setNetworkId(window.ethereum.networkVersion);
+      console.log(window.ethereum.networkVersion);
+      window.ethereum.on("chainChanged", function (networkId) {
+        // Time to reload your interface with the new networkId
+        window.location.reload();
+        // setNetworkId(networkId);
+      });
+      window.ethereum.on("accountsChanged", async function (acc) {
+        if (acc) {
+          // changed account
+          setAccount(acc[0]);
+        } else {
+          // disconnect
+          setAccount([]);
+        }
+      });
+    }
+  };
+
+  // !!! old contract
   const getLoanContract = (providerOrSigner) => {
     const loanContract = new ethers.Contract(
       loanContractAddress,
@@ -43,14 +105,7 @@ export const LendAndLoanProvider = ({ children }) => {
     );
     return tokenContract;
   };
-  const getAccBalance = async () => {
-    if (provider) {
-      if (account) {
-        let balance = await provider.getBalance(account);
-        return Number(ethers.utils.formatEther(balance.toString())).toFixed(2);
-      }
-    }
-  };
+
   const getUserOngoingLend = async () => {
     let arr = [];
     if (provider) {
@@ -85,39 +140,6 @@ export const LendAndLoanProvider = ({ children }) => {
       );
     }
   };
-  const loadWeb3 = async () => {
-    if (window.ethereum) {
-      provider = new ethers.providers.Web3Provider(window.ethereum);
-      setIsSupportMetaMask(true);
-    } else {
-      setIsSupportMetaMask(false);
-    }
-  };
-  const handleStartUp = async () => {
-    if (typeof window.ethereum != undefined) {
-      const acc = await provider.listAccounts();
-      if (acc) {
-        setAccount(acc[0]);
-      }
-      setContractTotalLiquidity();
-      setNetworkId(window.ethereum.networkVersion);
-      console.log(window.ethereum.networkVersion);
-      window.ethereum.on("chainChanged", function (networkId) {
-        // Time to reload your interface with the new networkId
-        window.location.reload();
-        // setNetworkId(networkId);
-      });
-      window.ethereum.on("accountsChanged", async function (acc) {
-        if (acc) {
-          // changed account
-          setAccount(acc[0]);
-        } else {
-          // disconnect
-          setAccount([]);
-        }
-      });
-    }
-  };
   useEffect(async () => {
     await loadWeb3();
     await handleStartUp();
@@ -140,6 +162,8 @@ export const LendAndLoanProvider = ({ children }) => {
         contractLiquidity,
         setContractTotalLiquidity,
         isSupportMetaMask,
+
+        getContractBalance,
       }}
     >
       {children}
