@@ -86,7 +86,7 @@ export default function Navbar() {
             href="https://metamask.io"
             target="_blank"
             rel="noopenner noreferrer"
-            className="bg-[#153d6f70] flex items-center text-center w-[130px] text-sm md:text-base md:w-auto px-2 md:px-4 py-2 rounded-2xl cursor-pointer outline outline-[1px] outline-[#191b1f] text-[#5090ea] hover:text-[#5da0ff] border-[1px] border-transparent hover:border-[#3d8be970] transition duration-200"
+            className="bg-[#153d6f70] text-soft-yellow flex items-center text-center w-[130px] text-sm md:text-base md:w-auto px-2 md:px-4 py-2 rounded-2xl cursor-pointer outline outline-[1px] outline-[#191b1f] text-[#5090ea] hover:text-[#5da0ff] border-[1px] border-transparent hover:border-[#3d8be970] transition duration-200"
           >
             <div className="mr-2">{metamaskSvg}</div>
             Install Metamask
@@ -94,7 +94,7 @@ export default function Navbar() {
         ) : !account ? (
           <div
             onClick={() => requestAccount()}
-            className="bg-[#153d6f70] flex items-center text-center w-[130px] text-sm md:text-base md:w-auto px-2 md:px-4 py-2 rounded-2xl cursor-pointer outline outline-[1px] outline-[#191b1f] text-[#5090ea] hover:text-[#5da0ff] border-[1px] border-transparent hover:border-[#3d8be970] transition duration-200"
+            className="bg-[#153d6f70] text-soft-yellow flex items-center text-center w-[130px] text-sm md:text-base md:w-auto px-2 md:px-4 py-2 rounded-2xl cursor-pointer outline outline-[1px] outline-[#191b1f] text-[#5090ea] hover:text-[#5da0ff] border-[1px] border-transparent hover:border-[#3d8be970] transition duration-200"
           >
             <div className="mr-2">{metamaskSvg}</div>
             Connect Wallet
@@ -117,7 +117,7 @@ export default function Navbar() {
               target="_blank"
               rel="noopenner noreferrer"
               href={`https://polygonscan.com//address/${account}`}
-              className="px-4 py-2 bg-[#222529] rounded-2xl  cursor-pointer hover:border-gray-600 border-[1px] border-transparent transition duration-200"
+              className="px-4 py-2 bg-[#222529]  rounded-2xl  cursor-pointer hover:border-gray-600 border-[1px] border-transparent transition duration-200"
             >
               {shortenAddress(account)}
             </a>
