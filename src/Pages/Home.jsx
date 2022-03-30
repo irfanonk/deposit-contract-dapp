@@ -8,7 +8,8 @@ export default function Home() {
       <div className="h-[100vh]">
         <ComingSoon />
       </div>
-      <div className="flex flex-wrap ">
+      <div className="text-4xl">Packages</div>
+      <div className="flex flex-wrap justify-between items-center  ">
         {Array.from("deposittt").map((elm, i) => {
           return (
             <div key={i} className="m-5">

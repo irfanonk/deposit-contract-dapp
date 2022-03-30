@@ -17,7 +17,7 @@ export default function Social() {
           target="_blank"
           rel="noopenner noreferrer"
         >
-          <FaFacebookSquare size={25} />
+          <FaFacebookSquare size={40} />
         </a>
         <a
           href="https://www.facebook.com"
@@ -25,7 +25,7 @@ export default function Social() {
           target="_blank"
           rel="noopenner noreferrer"
         >
-          <FaInstagram size={25} />
+          <FaInstagram size={40} />
         </a>
         <a
           href="https://www.facebook.com"
@@ -33,7 +33,7 @@ export default function Social() {
           target="_blank"
           rel="noopenner noreferrer"
         >
-          <FaTelegram size={25} />
+          <FaTelegram size={40} />
         </a>
         <a
           href="https://www.facebook.com"
@@ -41,7 +41,7 @@ export default function Social() {
           target="_blank"
           rel="noopenner noreferrer"
         >
-          <FaDiscord size={25} />
+          <FaDiscord size={40} />
         </a>
         <a
           href="https://www.facebook.com"
@@ -49,7 +49,7 @@ export default function Social() {
           target="_blank"
           rel="noopenner noreferrer"
         >
-          <FaTwitter size={25} />
+          <FaTwitter size={40} />
         </a>
       </div>
     </div>

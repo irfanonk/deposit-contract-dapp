@@ -5,7 +5,7 @@ export default function DepositCard({ isProceeding }) {
   const { account, requestAccount, getLoanContract, provider } =
     useContext(web3Context);
   return (
-    <div className="p-4 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
       <form className="space-y-6" action="#">
         <h5 className="text-xl font-medium text-gray-900 dark:text-white">
           Package 1

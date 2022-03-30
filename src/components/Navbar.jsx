@@ -67,7 +67,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-2 p-5">
+    <div className="grid grid-cols-2 md:grid-cols-2 p-5 ">
       <div className="w-[fit-content] font-courgette text-3xl cursor-pointer hover:scale-125 transition duration-200">
         Deposit App
       </div>
@@ -86,7 +86,7 @@ export default function Navbar() {
             href="https://metamask.io"
             target="_blank"
             rel="noopenner noreferrer"
-            className="bg-[#153d6f70] text-soft-yellow flex items-center text-center w-[130px] text-sm md:text-base md:w-auto px-2 md:px-4 py-2 rounded-2xl cursor-pointer outline outline-[1px] outline-[#191b1f] text-[#5090ea] hover:text-[#5da0ff] border-[1px] border-transparent hover:border-[#3d8be970] transition duration-200"
+            className="bg-dark-blue text-soft-yellow flex items-center text-center w-[130px] text-sm md:text-base md:w-auto px-2 md:px-4 py-2 rounded-2xl cursor-pointer outline outline-[1px] outline-[#191b1f] text-[#5090ea] hover:text-[#5da0ff] border-[1px] border-transparent hover:border-[#3d8be970] transition duration-200"
           >
             <div className="mr-2">{metamaskSvg}</div>
             Install Metamask
@@ -94,7 +94,7 @@ export default function Navbar() {
         ) : !account ? (
           <div
             onClick={() => requestAccount()}
-            className="bg-[#153d6f70] text-soft-yellow flex items-center text-center w-[130px] text-sm md:text-base md:w-auto px-2 md:px-4 py-2 rounded-2xl cursor-pointer outline outline-[1px] outline-[#191b1f] text-[#5090ea] hover:text-[#5da0ff] border-[1px] border-transparent hover:border-[#3d8be970] transition duration-200"
+            className="bg-dark-blue text-soft-yellow flex items-center text-center w-[130px] text-sm md:text-base md:w-auto px-2 md:px-4 py-2 rounded-2xl cursor-pointer outline outline-[1px] outline-[#191b1f] text-[#5090ea] hover:text-[#5da0ff] border-[1px] border-transparent hover:border-[#3d8be970] transition duration-200"
           >
             <div className="mr-2">{metamaskSvg}</div>
             Connect Wallet
