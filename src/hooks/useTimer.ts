@@ -36,14 +36,16 @@ const useTimer = () => {
 
   const calculateEndTime = useCallback(() => {
     const date = new Date();
-    let baseDate = new Date("2022-04-04T00:00:00.000Z");
-    console.log('data', date, baseDate);
+    let baseDate = new Date("2022-04-10T00:00:00.000Z");
+    // console.log('date 1', date, baseDate);
 
-    baseDate = setDate(date, 20);
-    baseDate = setHours(baseDate, 0);
-    baseDate = setMinutes(baseDate, 0);
-    baseDate = setSeconds(baseDate, 0);
-    timerRef.current = differenceInSeconds(date, baseDate);
+    // baseDate = setDate(date, 20);
+    // baseDate = setHours(baseDate, 0);
+    // baseDate = setMinutes(baseDate, 0);
+    // baseDate = setSeconds(baseDate, 0);
+    // console.log('date 2', date, baseDate);
+
+    timerRef.current = differenceInSeconds(baseDate, date);
   }, []);
 
   const run = useCallback(() => {
