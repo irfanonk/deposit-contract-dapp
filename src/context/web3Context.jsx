@@ -11,7 +11,7 @@ import {
 
 export const web3Context = createContext();
 
-export const LendAndLoanProvider = ({ children }) => {
+export const Web3Provider = ({ children }) => {
   const [account, setAccount] = useState();
   const [networkId, setNetworkId] = useState();
   const [contractLiquidity, setContractLiquidity] = useState();

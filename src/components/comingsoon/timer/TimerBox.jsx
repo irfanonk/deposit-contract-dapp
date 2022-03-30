@@ -12,7 +12,7 @@ function TimerBox(props) {
         </div>
 
         <div className="absolute top-0 left-0 right-0 bottom-2 flex items-center justify-center">
-          <span className="text-soft-yellow font-bold text-6xl">
+          <span className="text-blur text-soft-yellow font-bold text-6xl">
             {props.value}
           </span>
         </div>

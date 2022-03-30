@@ -73,6 +73,10 @@ input::-webkit-inner-spin-button {
   animation: gradient 15s ease infinite;
 }
 
+.text-blur {
+  text-shadow: 0 0 10px;
+}
+
 @keyframes gradient {
   0% {
     background-position: 0% 50%;

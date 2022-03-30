@@ -13,7 +13,7 @@ export default function Social() {
       <div className="flex space-x-6">
         <a
           href="https://www.facebook.com"
-          className=" hover:fill-current hover:text-soft-yellow"
+          className="hover:fill-current hover:text-soft-yellow"
           target="_blank"
           rel="noopenner noreferrer"
         >

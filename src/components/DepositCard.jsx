@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { web3Context } from "../context/web3Context";
 
-export default function DepositCard({ isProceeding }) {
-  const { account, requestAccount, getLoanContract, provider } =
+export default function DepositCard({ isProceeding, index }) {
+  const { account, requestAccount, getLoanContract, provider, networkId } =
     useContext(web3Context);
   return (
     <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
       <form className="space-y-6" action="#">
         <h5 className="text-xl font-medium text-gray-900 dark:text-white">
-          Package 1
+          Package {index + 1}
         </h5>
         <div>
           <label
@@ -47,7 +47,9 @@ export default function DepositCard({ isProceeding }) {
             </div>
           </div>
         </div>
-        {!account ? (
+        {!networkId ? (
+          <div></div>
+        ) : !account ? (
           <div
             onClick={() => requestAccount()}
             className="mt-3 bg-[#153d6f70] px-2 py-2 md:py-3 rounded-2xl text-center text-[#5090ea] cursor-pointer hover:bg-[#1f5ba370] transition text-xl"
@@ -62,7 +64,7 @@ export default function DepositCard({ isProceeding }) {
             Deposit
           </button>
         ) : (
-          <div className="my-10 w-20 h-20 animate-spin rounded-full border-blue-700 border-b-2 mx-auto"></div>
+          <div className="my-10 w-10 h-10 animate-spin rounded-full border-blue-700 border-b-2 mx-auto"></div>
         )}
       </form>
     </div>

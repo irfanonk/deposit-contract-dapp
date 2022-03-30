@@ -2,16 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { LendAndLoanProvider } from "./context/web3Context";
+import { Web3Provider } from "./context/web3Context";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <BrowserRouter>
-    <LendAndLoanProvider>
+    <Web3Provider>
       <React.StrictMode>
         <App />
       </React.StrictMode>
-    </LendAndLoanProvider>
+    </Web3Provider>
   </BrowserRouter>,
 
   document.getElementById("root")
