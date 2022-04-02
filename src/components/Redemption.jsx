@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { web3Context } from "../context/web3Context";
 import { ethers } from "ethers";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import lending from "../images/lending.png";
-import signing from "../images/signing.png";
+import lending from "../assets/images/lending.png";
+import signing from "../assets/images/signing.png";
 import timeConverter from "../utils/timeConvert";
 
 const WithdrawDetails = ({

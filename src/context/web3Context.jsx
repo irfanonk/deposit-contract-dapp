@@ -8,6 +8,7 @@ import {
   ScorpMaticAbi,
   ScorpMaticAddress,
 } from "../utils/constants";
+import { formatUntis, fromBNtoEth, parseUnits } from "../utils/etherUtils";
 
 export const web3Context = createContext();
 
@@ -23,6 +24,12 @@ export const Web3Provider = ({ children }) => {
     provider = undefined;
   }
 
+  const contract = new ethers.Contract(
+    ScorpMaticAddress,
+    ScorpMaticAbi,
+    provider
+  );
+
   const requestAccount = async () => {
     const accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
@@ -33,27 +40,59 @@ export const Web3Provider = ({ children }) => {
     if (provider) {
       if (account) {
         let balance = await provider.getBalance(account);
-        return Number(ethers.utils.formatEther(balance.toString())).toFixed(2);
+        return ethers.utils.formatEther(balance.toString()).toFixed(2);
       }
     }
   };
 
-  // !!! old contract
-
+  const createScorpContract = (providerOrSigner) => {
+    let contract = new ethers.Contract(
+      ScorpMaticAddress,
+      ScorpMaticAbi,
+      providerOrSigner
+    );
+    return contract;
+  };
   const getContractBalance = async () => {
-    if (provider) {
-      let contract = new ethers.Contract(
-        ScorpMaticAddress,
-        ScorpMaticAbi,
-        provider
-      );
-      let contractBalance = await contract.getContractBalance();
-      return Number(
-        ethers.utils.formatEther(contractBalance.toString())
-      ).toFixed(2);
-    }
+    let contractBalance = await contract.getContractBalance();
+    return fromBNtoEth(contractBalance);
   };
 
+  const getMinInvest = async () => {
+    const minInvest = await contract.INVEST_MIN_AMOUNT();
+    return fromBNtoEth(minInvest);
+  };
+  const getMaxInvest = async () => {
+    const maxInvest = await contract.INVEST_MAX_AMOUNT();
+    return fromBNtoEth(maxInvest);
+  };
+  const getRefarralPercent = async () => {
+    const refarralPercent = await contract.REFERRAL_PERCENT(0);
+    return fromBNtoEth(refarralPercent);
+  };
+
+  const getProjectFee = async () => {
+    const projectFee = await contract.PROJECT_FEE();
+    return {
+      eth: fromBNtoEth(projectFee),
+      wei: formatUntis(projectFee, "wei"),
+    };
+  };
+  const getPercentStep = async () => {
+    const percentStep = await contract.PERCENT_STEP();
+    return fromBNtoEth(percentStep);
+  };
+  const getWithdrawFee = async () => {
+    const withdrawFee = await contract.WITHDRAW_FEE();
+    return {
+      eth: fromBNtoEth(withdrawFee),
+      wei: formatUntis(withdrawFee, "wei"),
+    };
+  };
+  const getPercentsDivider = async () => {
+    const percentsDivider = await contract.PERCENTS_DIVIDER();
+    return fromBNtoEth(percentsDivider);
+  };
   const loadWeb3 = async () => {
     if (window.ethereum) {
       provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -70,7 +109,6 @@ export const Web3Provider = ({ children }) => {
       }
       setContractTotalLiquidity();
       setNetworkId(window.ethereum.networkVersion);
-      console.log(window.ethereum.networkVersion);
       window.ethereum.on("chainChanged", function (networkId) {
         // Time to reload your interface with the new networkId
         window.location.reload();
@@ -135,11 +173,10 @@ export const Web3Provider = ({ children }) => {
     if (provider) {
       const contract = getLoanContract(provider);
       const res = await contract.totalLiquidity();
-      setContractLiquidity(
-        Number(ethers.utils.formatEther(res.toString())).toFixed(3)
-      );
+      setContractLiquidity(ethers.utils.formatEther(res.toString()).toFixed(3));
     }
   };
+  // !!! old contract
   useEffect(async () => {
     await loadWeb3();
     await handleStartUp();
@@ -164,6 +201,13 @@ export const Web3Provider = ({ children }) => {
         isSupportMetaMask,
 
         getContractBalance,
+        getMinInvest,
+        getMaxInvest,
+
+        getProjectFee,
+        getPercentStep,
+        getWithdrawFee,
+        getPercentsDivider,
       }}
     >
       {children}
