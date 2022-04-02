@@ -68,7 +68,7 @@ export default function Navbar() {
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-2 p-5 ">
-      <div className="w-[fit-content] font-courgette text-3xl cursor-pointer hover:scale-125 transition duration-200">
+      <div className="w-[fit-content] text-3xl cursor-pointer hover:scale-125 transition duration-200">
         Deposit App
       </div>
       <div className="flex flex-col s gap-2  justify-self-end   items-center justify-center">
