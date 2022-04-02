@@ -71,8 +71,8 @@ export default function Navbar() {
       <div className="w-[fit-content] font-courgette text-3xl cursor-pointer hover:scale-125 transition duration-200">
         Deposit App
       </div>
-      <div className="flex justify-self-end  md:justify-self-end  items-center justify-center">
-        <a
+      <div className="flex flex-col s gap-2  justify-self-end   items-center justify-center">
+        {/* <a
           href="https://polygonscan.com"
           className="min-w-[120px]  flex  items-center mr-2 px-4 py-2 rounded-2xl bg-gray-800  cursor-pointer"
           target="_blank"
@@ -80,7 +80,7 @@ export default function Navbar() {
         >
           <div className="w-[9px] h-[9px] bg-purple-500 mr-2 rounded-full"></div>
           Polygon
-        </a>
+        </a> */}
         {!networkId ? (
           <a
             href="https://metamask.io"
