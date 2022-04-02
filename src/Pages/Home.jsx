@@ -10,9 +10,9 @@ export default function Home() {
         <div className="">
           <ComingSoon />
         </div>
-        <div className="">
-          <div className="text-soft-yellow font-bold text-4xl">Packages</div>
-          <div className="flex flex-wrap justify-between items-center  ">
+        <div className="flex flex-col">
+          <div className="text-soft-yellow font-bold sm:text-4xl">Packages</div>
+          <div className="flex flex-wrap justify-center sm:justify-between items-center  ">
             {Array.from("deposittt").map((elm, i) => {
               return (
                 <div key={i} className="m-5">
